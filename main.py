@@ -1,4 +1,5 @@
 import requests
+from send_email import send_email
 
 api_key = "060531c83c86433ba1de4c75f99209e5"
 url =("https://newsapi.org/v2/everything?q=tesla&from=2024-12-17&"
@@ -7,5 +8,7 @@ url =("https://newsapi.org/v2/everything?q=tesla&from=2024-12-17&"
 request = requests.get(url)
 content = request.json()
 for article in content["articles"]:
-    print(article["title"])
-    print(article["description"])
+    message = f"{article['title']} {article['description']}"
+    send_email(message)
+    # print(article["title"])
+    # print(article["description"])
