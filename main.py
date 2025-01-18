@@ -14,12 +14,9 @@ content = request.json()
 # print(content)
 
 # # Access the article titles and description
+body = ""
 for article in content["articles"]:
-    topic = article["title"]
-    desc = article["description"]
-    message = topic + " \n" + desc
-    send_email(message)
-    # message = f"{article["title"]} {article["description"]}"
-    # send_email(message)
-#     print(article["title"])
-#     print(article["description"])
+    body = body + article["title"] +"\n" + article["description"] + 2*"\n"
+
+body = body.encode("utf-8")
+send_email(message=body)
